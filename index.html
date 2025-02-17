@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="da">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>IT‑Tycoon</title>
+    <link rel="stylesheet" href="style.css" />
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.11.5/gsap.min.js"></script>
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css"
+      integrity="sha512-..."
+      crossorigin="anonymous"
+      referrerpolicy="no-referrer"
+    />
+  </head>
+  <body>
+    <header role="banner">
+      <div class="header-content">
+        <span class="logo" aria-hidden="true">🚀</span>
+        <h1>IT‑Tycoon</h1>
+        <button id="helpButton" class="help-btn" aria-label="Få hjælp">Få hjælp</button>
+      </div>
+    </header>
+    <div class="container" role="main">
+      <aside class="left-column">
+        <button id="newTaskBtn" class="big-new-task-btn" aria-label="Vælg ny opgave">
+          <i class="fas fa-plus" aria-hidden="true"></i> Vælg ny opgave
+        </button>
+        <div id="locationsContainer">
+          <h2>Lokationer</h2>
+          <div id="locations"></div>
+        </div>
+      </aside>
+      <section class="right-column">
+        <div id="activeTask">
+          <h2>Aktiv Opgave</h2>
+        </div>
+        <div id="graphContainer">
+          <canvas id="kpiChart" width="720" height="300"></canvas>
+          <div id="taskProgress" class="task-progress">Opgave 0/5</div>
+        </div>
+        <div id="infoContainer">
+          <div id="kpiInfo"></div>
+          <div id="narrativeUpdate"></div>
+        </div>
+      </section>
+    </div>
+
+     <div id="modal" class="modal">
+      <div class="modal-content">
+        <div class="modal-body" id="modalBody"></div>
+        <div class="modal-footer" id="modalFooter"></div>
+        <span id="modalClose" class="close" aria-label="Luk modal">&times;</span>
+      </div>
+    </div>
+
+    <script src="scripts/tasks/hospitalTasks.js"></script>
+    <script src="scripts/tasks/infrastrukturTasks.js"></script>
+    <script src="scripts/tasks/cybersikkerhedTasks
