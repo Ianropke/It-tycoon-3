@@ -1,0 +1,431 @@
+/* Reset og grundindstillinger */
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+/* Variabler */
+:root {
+  --primary-color: #0275d8;
+  --primary-color-dark: #025aa5;
+  --secondary-color: #4caf50;
+  --haster-color: #d9534f;
+  --header-bg-gradient: linear-gradient(90deg, #2193b0, #6dd5ed);
+  --background-gradient: linear-gradient(135deg, #f5f7fa, #c3cfe2);
+  --text-color: #333;
+  --font-family: 'Montserrat', sans-serif;
+  --modal-max-width: 80vw;
+  --modal-max-height: 60vh;
+  --btn-padding: 0.8rem 1.2rem;
+  --modal-padding: 1.5rem;
+}
+
+/* Global styling */
+body {
+  font-family: var(--font-family);
+  background: var(--background-gradient);
+  color: var(--text-color);
+  line-height: 1.5;
+}
+
+/* Header */
+header {
+  background: var(--header-bg-gradient);
+  color: #fff;
+  padding: 1rem 2rem;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.3);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: relative; /* Added for consistent positioning */
+}
+
+.header-content {
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: relative; /* Added for consistent positioning */
+}
+
+.header-content .logo {
+  font-size: 2.5rem;
+  margin-right: 0.5rem;
+}
+
+header h1 {
+  font-size: 2rem;
+}
+
+/* Hjælp-knap */
+.help-btn {
+  position: absolute;
+  top: 10px;
+  right: 10px;
+  background-color: var(--primary-color);
+  color: #fff;
+  border: none;
+  padding: var(--btn-padding);
+  border-radius: 4px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+.help-btn:hover {
+  background-color: var(--primary-color-dark);
+}
+
+/* Container & Columns */
+.container {
+  display: flex;
+  min-height: calc(100vh - 80px); /* 80px is an estimate, adjust if header height changes */
+}
+
+.left-column,
+.right-column {
+  padding: 1rem;
+  background-color: rgba(255, 255, 255, 0.95);
+  display: flex;
+  flex-direction: column;
+  gap: 1rem; /* Consistent gap */
+}
+.left-column {
+  width: 40%;
+  align-items: center; /* Center items in the left column */
+}
+.right-column {
+  width: 60%;
+  gap: 0.5rem; /* Smaller gap for right column */
+}
+
+
+/* Buttons (General & Specific) */
+.modern-btn {
+  background-color: var(--primary-color);
+  color: #fff;
+  border: none;
+  border-radius: 4px;
+  padding: var(--btn-padding);
+  cursor: pointer;
+  font-size: 1rem;
+  margin: 0.3rem 0;
+  transition: background-color 0.3s ease, transform 0.2s ease;
+}
+
+.modern-btn:hover {
+  background-color: var(--primary-color-dark);
+  transform: scale(1.02);
+}
+
+#newTaskBtn,
+.big-new-task-btn {
+  font-size: 1.2rem;
+  padding: 1rem 2rem;
+    background-color: #2196f3; /* Moved styles common with .modern-btn to .modern-btn */
+  animation: pulseNewTask 1.5s infinite;
+}
+.big-new-task-btn i { /* Style for the icon inside */
+    margin-right: 0.5rem;
+}
+
+.location-button {
+  padding: 1.2rem 1.8rem;
+  font-size: 1.1rem;
+  border: 2px solid var(--secondary-color);
+  background-color: var(--secondary-color);
+  color: #fff;
+  text-transform: uppercase;
+  border-radius: 4px;
+  cursor: pointer;
+  transition: background-color 0.3s ease, transform 0.2s ease;
+  width: 100%;
+  text-align: center;
+}
+
+.location-button:hover {
+  background-color: #43a047;
+  transform: scale(1.02);
+}
+
+.location-button.highlight {
+  background-color: #ff9800;
+  animation: highlightPulse 1.5s infinite;
+}
+
+/* Animations */
+@keyframes pulseNewTask {
+  0% {
+    transform: scale(1);
+  }
+  50% {
+    transform: scale(1.05);
+  }
+  100% {
+    transform: scale(1);
+  }
+}
+
+@keyframes highlightPulse {
+  0% {
+    transform: scale(1);
+    box-shadow: 0 0 0 0 rgba(255, 152, 0, 0.7);
+  }
+  70% {
+    transform: scale(1.05);
+    box-shadow: 0 0 0 8px rgba(255, 152, 0, 0);
+  }
+  100% {
+    transform: scale(1);
+    box-shadow: 0 0 0 0 rgba(255, 152, 0, 0);
+  }
+}
+
+/* Locations Container */
+#locationsContainer {
+  width: 100%;
+}
+
+#locations {
+  display: flex;
+  flex-direction: column;
+  gap: 0.8rem;
+  width: 100%;
+}
+
+/* Active Task & Right Column Content */
+#activeTask {
+  background: #fff;
+  border: 1px solid #ddd;
+  border-radius: 4px;
+  padding: 1rem;
+  min-height: 200px;
+}
+
+#graphContainer {
+  width: 100%;
+  position: relative;
+  max-width: 720px;
+  height: auto;
+  margin: 0 auto 0.3rem;
+}
+
+#kpiChart {
+  width: 100% !important;
+  height: auto !important;
+}
+
+.task-progress {
+  position: absolute;
+  top: 10px;
+  right: 10px;
+  background: rgba(255, 255, 255, 0.9);
+  padding: 8px 12px;
+  border-radius: 4px;
+  font-size: 1rem;
+  color: var(--text-color);
+}
+
+/* KPI & Narrative Info */
+#infoContainer {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 1rem;
+  margin-top: 0.25rem;
+}
+
+#kpiInfo {
+  display: flex;
+  gap: 1rem;
+  align-items: center;
+}
+
+.tooltip-item {
+    display: flex;
+    align-items: center;
+    gap: .3rem;
+    font-size: .95rem;
+}
+
+
+#narrativeUpdate {
+  flex: 1;
+  color: #555;
+  font-style: italic;
+  min-width: 200px;
+}
+
+/* Modal Styling */
+.modal {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.6);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 1000;
+  animation: fadeIn 0.3s ease;
+  /*  Removed .hidden class and use display: none; directly */
+  display: none; /* Initially hidden */
+}
+
+
+.modal-content {
+  background: #fff;
+  border-radius: 8px;
+  max-width: var(--modal-max-width);
+  max-height: var(--modal-max-height);
+  width: 90%;
+  padding: var(--modal-padding);
+  overflow-y: auto;
+  position: relative;
+  animation: slideIn 0.4s ease;
+}
+
+/* Modal Animations */
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+@keyframes slideIn {
+  from {
+    transform: translateY(-20px);
+  }
+  to {
+    transform: translateY(0);
+  }
+}
+
+.modal-body {
+  text-align: center;
+  line-height: 1.6;
+  margin-bottom: 1rem;
+}
+
+.modal-footer {
+  display: flex;
+  justify-content: center;
+  gap: 1rem;
+  flex-wrap: wrap;
+  padding-top: 1rem;
+  border-top: 1px solid #ddd;
+}
+
+.close {
+  position: absolute;
+  top: 10px;
+  right: 10px;
+  font-size: 1.5rem;
+  cursor: pointer;
+  color: var(--text-color);
+}
+
+/* Task Table (in modal) */
+.task-table {
+  width: 100%;
+  border-collapse: collapse;
+  margin-top: 1rem;
+}
+
+.task-table th,
+.task-table td {
+  padding: 0.75rem;
+  text-align: left;
+  border: 1px solid #ddd;
+}
+
+.task-table th {
+  background-color: #f0f0f0;
+  font-weight: 600;
+}
+
+/* Task Items (in modal) */
+.task-item {
+  border: 1px solid #ddd;
+  padding: 0.75rem;
+  margin-bottom: 0.4rem;
+  display: flex;
+  flex-direction: column;
+  border-radius: 4px;
+  background-color: #fff;
+  color: var(--text-color);
+}
+
+.task-item h3 {
+  margin-bottom: 0.3rem;
+}
+
+.haster-badge {
+  background-color: var(--haster-color);
+  color: #fff;
+  padding: 0.3rem 0.6rem;
+  border-radius: 4px;
+  font-size: 0.8rem;
+  margin-left: 0.3rem;
+}
+
+/* Event Pop-up Class */
+.event-modal {
+  animation: eventPulse 1.5s infinite;
+  border: 3px solid #f44336;
+  background-color: #ffecec;
+}
+
+@keyframes eventPulse {
+  0% {
+    transform: scale(1);
+    box-shadow: 0 0 0 0 rgba(244, 67, 54, 0.6);
+  }
+  50% {
+    transform: scale(1.05);
+    box-shadow: 0 0 20px 10px rgba(244, 67, 54, 0);
+  }
+  100% {
+    transform: scale(1);
+    box-shadow: 0 0 0 0 rgba(244, 67, 54, 0);
+  }
+}
+
+/* Responsiveness */
+@media (max-width: 768px) {
+  .container {
+    flex-direction: column;
+  }
+
+  .left-column,
+  .right-column {
+    width: 100%;
+  }
+
+  .modal-content {
+    max-width: 95vw;
+    max-height: 70vh;
+  }
+}
+
+@media (max-width: 480px) {
+  .modern-btn {
+    font-size: 0.9rem;
+    padding: 0.6rem 1rem;
+  }
+
+  .modal-content {
+    max-width: 95vw;
+    max-height: 75vh;
+  }
+
+  .location-button {
+    font-size: 1rem;
+  }
+}
