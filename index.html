@@ -3,7 +3,7 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>IT‑Tycoon</title>
+    <title>IT‑Tycoon – Sexet Edition</title>
 
     <!-- Favicon -->
     <link
@@ -15,20 +15,20 @@
     <!-- Meta Description -->
     <meta
       name="description"
-      content="IT‑Tycoon: et strategisk simulatorspil, hvor du styrer udvikling og sikkerhed i komplekse IT-systemer."
+      content="IT‑Tycoon: Balancér udvikling og sikkerhed i hospitalets IT-løsninger. Nu med lækker UI!"
     />
     <!-- Open Graph Data -->
-    <meta property="og:title" content="IT‑Tycoon" />
+    <meta property="og:title" content="IT‑Tycoon – Sexet Edition" />
     <meta
       property="og:description"
-      content="Tag rollen som IT‑forvalter: Balancér udvikling og sikkerhed, håndtér hændelser, og få dine projekter godkendt af CAB!"
+      content="Tag rollen som IT‑forvalter: Balancér dev og security, håndtér hændelser og CAB-godkendelser – nu i en lækker UI!"
     />
     <meta property="og:image" content="https://cdn-icons-png.flaticon.com/512/1048/1048945.png" />
     <meta property="og:url" content="https://ditdomæne.dk/it-tycoon" />
 
-    <!-- Google Fonts - eksempel (Poppins) -->
+    <!-- Google Fonts (eksempel: Poppins) -->
     <link
-      href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&display=swap"
+      href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap"
       rel="stylesheet"
     />
 
@@ -41,7 +41,7 @@
       referrerpolicy="no-referrer"
     />
 
-    <!-- Egen hoved-CSS -->
+    <!-- Egen hoved-CSS (med kompakt modal og .narrative-sexy) -->
     <link rel="stylesheet" href="style.css" />
 
     <!-- Eksterne biblioteker (Chart.js og GSAP) -->
@@ -53,16 +53,16 @@
     <!-- HEADER -->
     <header>
       <div class="header-content">
-        <!-- Lidt større “logo” plus en rocket emoji -->
         <span class="logo">🚀</span>
         <h1>IT‑Tycoon</h1>
-        <!-- Hjælp-knap – fast placeret i øverste højre hjørne -->
+        <!-- Hjælp-knap -->
         <button id="helpButton" class="help-btn">Få hjælp</button>
       </div>
     </header>
 
     <!-- MAIN CONTAINER -->
-    <div class="container">
+    <!-- Tilføj en klasse der “fader ind” via GSAP (fx .fadeInContainer) -->
+    <div class="container fadeInContainer">
       <!-- Venstre kolonne: "Vælg ny opgave"-knap og Lokationer -->
       <div class="left-column">
         <button id="newTaskBtn" class="big-new-task-btn">
@@ -76,19 +76,20 @@
 
       <!-- Højre kolonne: Aktiv opgave, KPI-graf og info -->
       <div class="right-column">
-        <!-- Aktiv opgave -->
         <div id="activeTask">
           <h2>Aktiv Opgave</h2>
         </div>
-        <!-- KPI-graf -->
         <div id="graphContainer">
           <canvas id="kpiChart" width="720" height="300"></canvas>
           <div id="taskProgress" class="task-progress">Opgave 0/5</div>
         </div>
-        <!-- Container til KPI-info og narrativ feedback -->
         <div id="infoContainer">
           <div id="kpiInfo"></div>
-          <div id="narrativeUpdate"></div>
+
+          <!-- Her har vi en fed “narrative-sexy” tekst -->
+          <div id="narrativeUpdate" class="narrative-sexy">
+            PI er i gang, vælg en opgave for at starte!
+          </div>
         </div>
       </div>
     </div>
@@ -112,5 +113,26 @@
     <script type="module" src="scripts/utils.js"></script>
     <script type="module" src="scripts/events.js"></script>
     <script type="module" src="scripts/main.js"></script>
+
+    <!-- Evt. inlined GSAP-animationskode – fadeIn container + puls på narrative -->
+    <script>
+      // FadeIn på containeren ved side-load
+      gsap.from('.fadeInContainer', {
+        opacity: 0,
+        y: 20,
+        duration: 1.2,
+        ease: 'power3.out'
+      });
+
+      // Let “pulse” på narrative
+      gsap.to('#narrativeUpdate', {
+        scale: 1.05,
+        repeat: -1,
+        yoyo: true,
+        duration: 2,
+        ease: 'power1.inOut',
+        delay: 1
+      });
+    </script>
   </body>
 </html>
