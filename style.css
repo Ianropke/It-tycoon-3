@@ -7,18 +7,23 @@
   padding: 0;
 }
 
-/* Variabler – evt. dine oprindelige farver eller nye */
+/* Variabler – farver og dimensioner */
 :root {
-  --primary-color: #6A5ACD;              /* Lilla nuance */
-  --primary-color-dark: #483D8B;         /* Mørkere lilla */
-  --secondary-color: #4CAF50;            /* Grøn til knapper */
-  --haster-color: #d9534f;               /* Rødlig farve til "hastende" badges */
+  --primary-color: #6A5ACD;            /* Lilla nuance */
+  --primary-color-dark: #483D8B;       /* Mørkere lilla */
+  --secondary-color: #4CAF50;          /* Grøn til knapper */
+  --haster-color: #d9534f;             /* Rødlig farve til "hastende" badges */
+
+  /* Gradient-baggrund i header */
   --header-bg-gradient: linear-gradient(90deg, #614385, #516395);
+
+  /* Baggrundsgradient for body */
   --background-gradient: linear-gradient(135deg, #fffcdc, #d9a7c7);
+
   --text-color: #333;
   --font-family: 'Poppins', sans-serif;
 
-  /* Vigtigste ændringer: Større modal og body-scroll */
+  /* Vigtigste ændringer for modalen: Gør den større */
   --modal-max-width: 90vw;
   --modal-max-height: 80vh;
 
@@ -263,35 +268,29 @@ header h1 {
 .modal.hidden {
   display: none;
 }
-
-/* Vigtigste ændringer: Større max-width/height og egen scroll på modal-body */
 .modal-content {
   background: #fff;
   border-radius: 8px;
   max-width: var(--modal-max-width);
   max-height: var(--modal-max-height);
   width: 90%;
-  overflow: hidden;      /* skjul overskud -> body scroller i stedet */
+  overflow: hidden;      /* skjul overskud -> .modal-body scroller */
   position: relative;
   box-shadow: 0 5px 20px rgba(0,0,0,0.4);
-  /* Fjern eller ændr eventuelle animationer, hvis du vil */
-  transform: translateY(0);
   animation: fadeInModal 0.4s ease;
 }
 @keyframes fadeInModal {
   from { opacity: 0; transform: translateY(-20px); }
   to { opacity: 1; transform: translateY(0); }
 }
-
 .modal-body {
-  padding: 0.5rem 1rem;   /* Skru ned for padding hvis du vil have mindre “hvidt rum” */
-  overflow-y: auto;       /* Scroll inden i selve body */
+  padding: 0.5rem 1rem;   
+  overflow-y: auto;       
   max-height: calc(var(--modal-max-height) - 5rem); 
-  /* Træk lidt til footer + overhead. Justér hvis du har et større footer-indhold */
   line-height: 1.4;       
 }
 .modal-body p {
-  margin-bottom: 0.75rem; /* Mindre margin */
+  margin-bottom: 0.75rem; 
 }
 .modal-footer {
   display: flex;
@@ -376,7 +375,7 @@ header h1 {
   }
 }
 
-/* Responsivt design */
+/* Responsive design */
 @media (max-width: 768px) {
   .container {
     flex-direction: column;
@@ -387,7 +386,7 @@ header h1 {
   }
   .modal-content {
     max-width: 95vw;
-    max-height: 70vh;  /* lidt mindre på mobil, hvis du vil */
+    max-height: 70vh;
   }
 }
 @media (max-width: 480px) {
@@ -404,5 +403,41 @@ header h1 {
   }
   .location-button {
     font-size: 1rem;
+  }
+}
+
+/* ----------------------------------
+   NARRATIVE-SEXINESS KLASSE
+   (gradient-clip, animeret baggrund)
+---------------------------------- */
+
+/* Klassens idé: Stor typografi, fed skrift,
+   baggrund i en gradient der “klippes”,
+   og en rolig baggrund-animation. */
+
+.narrative-sexy {
+  font-size: 1.4rem;      /* Større tekst */
+  line-height: 1.3;       /* Tættere linjeafstand */
+  margin-top: 1rem;
+  font-weight: 700;
+
+  /* Gradient baggrund, der “shimmer” */
+  background: linear-gradient(90deg, #ff6e7f, #bfe9ff);
+  background-size: 200% 200%;
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+
+  /* Bevægelse i gradienten */
+  animation: textGradientMove 3s infinite alternate;
+  display: inline-block; /* Nødvendigt for gradient-clip */
+}
+
+/* Keyframe til at flytte gradienten roligt */
+@keyframes textGradientMove {
+  0% {
+    background-position: 0% 50%;
+  }
+  100% {
+    background-position: 100% 50%;
   }
 }
