@@ -1,33 +1,51 @@
 // scripts/utils.js
 
 /**
- * Blander et array (Fisher-Yates shuffle).
- * @param {Array} array - Arrayet, der skal blandes.
- * @returns {Array} - Det blandede array.
+ * shuffleArray
+ * Fisher‑Yates-algoritmen:
+ * Bland en array in-place, så elementerne ligger i en tilfældig rækkefølge.
  */
-function shuffleArray(array) {
-    for (let i = array.length - 1; i > 0; i--) {
-        const j = Math.floor(Math.random() * (i + 1));
-        [array[i], array[j]] = [array[j], array[i]]; // Byt elementer
-    }
-    return array;
+export function shuffleArray(array) {
+  for (let i = array.length - 1; i > 0; i--) {
+    const j = Math.floor(Math.random() * (i + 1));
+    [array[i], array[j]] = [array[j], array[i]];
+  }
+  return array;
 }
 
 /**
- * Henter et Font Awesome-ikon baseret på lokation.
- * @param {string} location - Lokationens navn.
- * @returns {string} - HTML-streng med Font Awesome-ikonet.
+ * getIcon
+ * Returnér en emoji baseret på et lokationsnavn.
+ * Her kan du udvide med flere “location” => emoji-oversættelser.
  */
-function getIcon(location) {
-    switch (location) {
-        case "hospital": return '<i class="fas fa-hospital"></i>';
-        case "dokumentation": return '<i class="fas fa-file-alt"></i>';
-        case "leverandør": return '<i class="fas fa-truck"></i>';
-        case "infrastruktur": return '<i class="fas fa-server"></i>';
-        case "it‑jura": return '<i class="fas fa-gavel"></i>';
-        case "cybersikkerhed": return '<i class="fas fa-shield-alt"></i>';
-        default: return '<i class="fas fa-question-circle"></i>'; // Default icon
-    }
+export function getIcon(location) {
+  const icons = {
+    'hospital': '🏥',
+    'dokumentation': '📄',
+    'leverandør': '📦',
+    'infrastruktur': '🔧',
+    'it‑jura': '⚖️',
+    'cybersikkerhed': '💻'
+  };
+  return icons[location.toLowerCase()] || '❓';
 }
 
-export { shuffleArray, getIcon };
+/**
+ * randomRange
+ * Returnér et tilfældigt heltal mellem min og max (inklusive begge).
+ */
+export function randomRange(min, max) {
+  return Math.floor(Math.random() * (max - min + 1)) + min;
+}
+
+/**
+ * formatTime
+ * Hjælpefunktion til evt. at formatere tid, hvis man ønsker “mm:ss”.
+ * Hvis du har behov for at vise TID i spillet på en flot måde,
+ * kan du fx bruge denne – men det afhænger af dit design.
+ */
+export function formatTime(seconds) {
+  const mins = Math.floor(seconds / 60);
+  const secs = seconds % 60;
+  return `${mins}:${secs < 10 ? '0'+secs : secs}`;
+}
